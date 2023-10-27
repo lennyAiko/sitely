@@ -35,7 +35,11 @@ module.exports = {
 
     let secret = this.req.secret
 
-    console.log(secret, toUpdate)
+    if (!secret) {
+      exits.badCombo({
+        message: "Analytics info not found"
+      })
+    }
 
     let infoRecord = await Info.findOne({ secret })
 
@@ -49,12 +53,11 @@ module.exports = {
     let userVisits = infoRecord.visits
     if (toUpdate === 'vp') { userVisits = infoRecord.visits + 1 }
 
-    let updateInfo = await Info.updateOne({ secret: infoRecord.secret })
+    await Info.updateOne({ secret: infoRecord.secret })
     .set({ 
       pageViews: userPageViews, visits: userVisits
     })
 
-    console.log(updateInfo)
     // All done.
     return exits.success({
       message: 'updated'
