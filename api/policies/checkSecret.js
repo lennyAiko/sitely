@@ -10,7 +10,7 @@ module.exports = async function (req, res, proceed) {
       var credentials = parts[1];
 
       if (/^Bearer$/i.test(scheme)) {
-        token = credentials;
+        secret = credentials;
       }
 
     } else {
@@ -19,6 +19,7 @@ module.exports = async function (req, res, proceed) {
   } else {
     return res.status(401).json({err: 'No secret was found'});
   }
+
 
   req.secret = secret
 

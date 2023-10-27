@@ -10,6 +10,7 @@
 
 module.exports.routes = {
 
-    'POST /create': 'info/create'
+    'POST /create': 'info/create',
+    'GET /update': 'info/update'
 
 };

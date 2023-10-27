@@ -25,7 +25,7 @@ module.exports = {
     },
 
     badCombo: {
-      statusCode: 400,
+      statusCode: 401,
       description: 'invalid'
     }
 
@@ -46,7 +46,7 @@ module.exports = {
     return exits.success({
       status: 201,
       secret: info.secret,
-      message: `Account has been created with ${info.secret}. Keep it safe`
+      message: `Account has been created with "${info.secret}". Keep it safe`
     })
 
   }
